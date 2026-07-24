@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2 style="margin-bottom: 20px; color: #0099ff;">Đăng Nhập</h2>
+
+            <input type="text" id="engName" placeholder="English Name" required>
+
+            <div class="remember-me">
+                <input type="checkbox" id="rememberMe" checked>
+                <label for="rememberMe">Remember me</label>
+            </div>
+
+            <button type="button" class="btn" id="btn-login">Login</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase/firebase.js"></script>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnLogin = document.getElementById("btn-login");
+            const engNameInput = document.getElementById("engName");
+
+            btnLogin.addEventListener("click", doLogin);
+
+            // Cho phép nhấn Enter để đăng nhập
+            engNameInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") doLogin();
+            });
+
+            async function doLogin() {
+                const name = engNameInput.value.trim();
+
+                if (name === "") {
+                    alert("Vui lòng điền Tên Tiếng Anh của bạn!");
+                    return;
+                }
+
+                btnLogin.disabled = true;
+                btnLogin.innerText = "Đang đăng nhập...";
+
+                // Lưu vào localStorage để tự động đăng nhập lần sau
+                localStorage.setItem("userName", name);
+
+                // Đồng bộ lên Firestore để Admin thấy được ở SMS > Students
+                try {
+                    await syncStudentToFirestore(name);
+                } catch (err) {
+                    console.error(err);
+                    // Vẫn cho vào bình thường dù đồng bộ lỗi, để không chặn user
+                }
+
+                window.location.href = "pages/Homeworks.html";
+            }
+        });
+    </script>
+</body>
+</html>

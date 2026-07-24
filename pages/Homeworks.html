@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeworks</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Homeworks.css">
+</head>
+<body>
+    <header>
+        <div class="logo display-user-name"></div>
+        <nav>
+            <a href="Homeworks.html" class="active">Homeworks</a>
+            <a href="Account.html">Account</a>
+            <a href="#" onclick="handleLogout()" style="color: #ff4d4d;">Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome <span class="display-user-name" style="color: #0099ff;"></span></h1>
+
+        <!-- Danh sách bài tập -->
+        <div id="hw-list-area">
+            <p>Bài tập Admin đã update cho bạn:</p>
+
+            <div id="hw-loading" class="hw-loading">Đang tải bài tập...</div>
+
+            <div id="hw-cards"></div>
+
+            <div id="hw-empty" class="empty-hw" style="display:none;">
+                <h2>📭</h2>
+                <h3>Bạn chưa có bài tập nào</h3>
+                <p>Admin chưa thêm bạn vào lớp hoặc chưa giao bài tập nào cho bạn.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Khu vực làm bài - toàn màn hình, trừ header -->
+    <div id="hw-doing-area">
+
+        <div class="hw-doing-topbar">
+            <h2 id="hw-title"></h2>
+            <div class="hw-topbar-right">
+                <div class="hw-part-indicator" id="hw-part-indicator"></div>
+                <button class="hw-exit-btn" id="btn-hw-exit" title="Thoát">✕</button>
+            </div>
+        </div>
+
+        <div class="hw-workspace">
+
+            <div class="hw-pane">
+                <div class="hw-pane-label">Reading</div>
+                <div class="hw-pane-image" id="pane-reading"></div>
+            </div>
+
+            <div class="hw-pane">
+                <div class="hw-pane-label">Question</div>
+                <div class="hw-pane-image" id="pane-question"></div>
+            </div>
+
+        </div>
+
+        <!-- Khu vực chọn đáp án A/B/C/D cho Part hiện tại -->
+        <div class="hw-answer-section" id="hw-answer-section">
+            <div class="hw-answer-title">📝 Chọn đáp án</div>
+            <div class="hw-answer-list" id="hw-answer-list"></div>
+        </div>
+
+        <div class="hw-actions">
+            <button class="btn btn-secondary-hw" id="btn-hw-back">Back</button>
+            <button class="btn" id="btn-hw-next">Next</button>
+            <button class="btn btn-success-hw" id="btn-hw-done" style="display:none;">Submit</button>
+        </div>
+
+    </div>
+
+    <!-- Màn hình kết quả sau khi Submit -->
+    <div id="hw-result-area">
+
+        <div class="hw-result-card">
+
+            <h2 id="result-title"></h2>
+
+            <div class="hw-result-score" id="result-score"></div>
+
+            <div class="hw-result-buttons">
+                <button class="btn" id="btn-view-detail">Xem chi tiết</button>
+                <button class="btn btn-secondary-hw" id="btn-retry">Làm lại</button>
+            </div>
+
+            <div class="hw-result-detail" id="hw-result-detail" style="display:none;"></div>
+
+            <button class="btn btn-secondary-hw" id="btn-result-close" style="margin-top:20px;">Quay lại danh sách</button>
+
+        </div>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="../firebase/firebase.js"></script>
+
+    <script src="../js/scripts.js"></script>
+    <script src="../js/Homeworks.js"></script>
+</body>
+</html>

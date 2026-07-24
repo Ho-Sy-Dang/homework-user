@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Homeworks.css">
+    <link rel="stylesheet" href="../css/Account.css">
+</head>
+<body>
+    <header>
+        <div class="logo display-user-name"></div>
+        <nav>
+            <a href="Homeworks.html">Homeworks</a>
+            <a href="Account.html" class="active">Account</a>
+            <a href="#" onclick="handleLogout()" style="color: #ff4d4d;">Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome <span class="display-user-name" style="color: #0099ff;"></span></h1>
+
+        <div class="account-card">
+            <h3 style="margin-bottom: 20px; color:#333;">Thông tin tài khoản</h3>
+
+            <p style="font-size: 18px; margin-bottom: 10px;">
+                <strong>Tên: </strong> <span class="display-user-name" style="color: #0099ff;"></span>
+            </p>
+
+            <p style="font-size: 18px; margin-bottom: 10px;">
+                <strong>Lớp học: </strong> <span id="display-class" style="color: #0099ff;">Chưa được xếp lớp</span>
+            </p>
+
+            <div id="pending-request-box" class="pending-request-box" style="display:none;">
+                ⏳ Yêu cầu đổi tên đang chờ Admin duyệt: <b id="pending-request-text"></b>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <label style="display:block; margin-bottom:10px; font-weight:bold;">
+                    Gửi yêu cầu đổi Tên Tiếng Anh (cần Admin duyệt):
+                </label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="newNameInput" placeholder="Nhập tên mới của bạn...">
+                    <button type="button" class="btn" id="btn-request-name">Gửi yêu cầu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="../firebase/firebase.js"></script>
+
+    <script src="../js/scripts.js"></script>
+    <script src="../js/Account.js"></script>
+</body>
+</html>
